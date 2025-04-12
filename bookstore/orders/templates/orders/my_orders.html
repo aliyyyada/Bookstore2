@@ -1,0 +1,17 @@
+<h2>Мои заказы</h2>
+<a href="{% url 'book_list' %}">На главную</a>
+{% for order in orders %}
+    <div>
+        <h4>Заказ #{{ order.id }} — {{ order.created_at|date:"d.m.Y H:i" }}</h4>
+        <ul>
+            {% for item in order.items.all %}
+                <li>{{ item.book.title }} — {{ item.quantity }} шт. — {{ item.total_price }} руб.</li>
+            {% endfor %}
+        </ul>
+        <strong>Итого: {{ order.total_price }} руб.</strong>
+    </div>
+    <hr>
+{% empty %}
+    <p>У вас пока нет заказов.</p>
+{% endfor %}
+

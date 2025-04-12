@@ -1,0 +1,18 @@
+<h2>Корзина</h2>
+<a href="{% url 'book_list' %}">На главную</a>
+{% for item in cart %}
+  <p>
+    {{ item.book.title }} — {{ item.quantity }} шт. = {{ item.total_price }} ₽
+    <a href="{% url 'remove_from_cart' item.book.id %}">Удалить</a>
+  </p>
+{% empty %}
+  <p>Корзина пуста.</p>
+{% endfor %}
+
+<p><strong>Итого:</strong> {{ total }} ₽</p>
+
+{% if user.is_authenticated %}
+  <a href="{% url 'place_order' %}">Оформить заказ</a>
+{% else %}
+  <p>Авторизуйтесь, чтобы оформить заказ.</p>
+{% endif %}
