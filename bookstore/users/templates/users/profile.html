@@ -1,0 +1,8 @@
+<h2> ЛИЧНЫЙ КАБИНЕТ </h2>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <button type="submit"> Сохранить </button>
+    <a href="{% url 'book_list' %}">На главную</a>
+</form>
